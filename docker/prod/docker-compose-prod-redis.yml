@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  redis:
+    restart: always
+    image: redis:latest
+    container_name: redis
+    command:
+      # 执行的命令
+      redis-server /etc/redis/redis.conf
+    volumes:
+      - /etc/timezone/timezone:/etc/timezone
+      - /etc/localtime:/etc/localtime
+      - /data/redis/redis.conf:/etc/redis/redis.conf:rw
+      - /data/redis/data:/data:rw
+    ports:
+      - "6379:6379"
+    environment:
+      - "REDIS_PASSWORD=huaxiao_edu"

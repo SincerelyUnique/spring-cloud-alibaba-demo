@@ -5,6 +5,10 @@
     <modules>
         <module>order</module>
         <module>stock</module>
+        <module>order-nacos</module>
+        <module>stock-nacos</module>
+        <module>order-ribbon</module>
+        <module>order-loadbalancer</module>
     </modules>
     <!-- SpringBoot的版本管理器 -->
     <groupId>com.example</groupId>
@@ -15,9 +19,9 @@
     <packaging>pom</packaging>
     <properties>
         <java.version>1.8</java.version>
-        <spring.cloud.alibaba.version>2.2.6.RELEASE</spring.cloud.alibaba.version>
-        <spring.boot.version>2.3.2.RELEASE</spring.boot.version>
-        <spring.cloud.version>Hoxton.SR9</spring.cloud.version>
+        <spring.cloud.alibaba.version>2.2.7.RELEASE</spring.cloud.alibaba.version>
+        <spring.boot.version>2.3.12.RELEASE</spring.boot.version>
+        <spring.cloud.version>Hoxton.SR12</spring.cloud.version>
     </properties>
     <dependencies>
         <dependency>

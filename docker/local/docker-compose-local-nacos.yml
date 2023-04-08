@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  nacos:
+    restart: always
+    image: nacos/nacos-server:2.0.3
+    container_name: nacos
+    environment:
+      - SET_CONTAINER_TIMEZONE=true
+      - CONTAINER_TIMEZONE=Asia/Shanghai
+      - PREFER_HOST_MODE=hostname
+      - MODE=standalone
+#      - NACOS_AUTH_IDENTITY_KEY=serverIdentity
+#      - NACOS_AUTH_IDENTITY_VALUE=security
+#      - NACOS_AUTH_TOKEN=SecretKey012345678901234567890123456789012345678901234567890123456789和VGhpc0lzTXlDdXN0b21TZWNyZXRLZXkwMTIzNDU2Nzg=
+      - SPRING_DATASOURCE_PLATFORM=mysql
+      - MYSQL_SERVICE_HOST=mysql
+      - MYSQL_SERVICE_DB_NAME=nacos
+      - MYSQL_SERVICE_PORT=3306
+      - MYSQL_SERVICE_USER=root
+      - MYSQL_SERVICE_PASSWORD=root
+      - MYSQL_SERVICE_DB_PARAM=serverTimezone=Asia/Shanghai&characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&useSSL=false
+    volumes:
+      - /etc/timezone:/etc/timezone
+      - /etc/localtime:/etc/localtime
+      - D:\idea\workspace\spring-cloud-demo\docker\nacos\logs:/home/nacos/logs
+    ports:
+      - "8848:8848"
+      - "9555:9555"
+      - "9848:9848"  # Nacos2.X版本中，增加了gRPC通信端口，需要由docker一并映射出来 , https://github.com/alibaba/nacos/issues/6154#issuecomment-1123145625

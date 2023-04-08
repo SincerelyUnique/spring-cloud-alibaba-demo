@@ -1,0 +1,23 @@
+server:
+  port: 8021
+
+# 应用名称（nacos会将该名称当作服务名称）
+spring:
+  application:
+    name: stock-service  # 默认作为nacos的服务名
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848
+      discovery:
+        username: nacos
+        password: nacos
+        namespace: public  # 默认public，不设没事
+        ephemeral: false  # 临时实例，默认true，false意思是永久实例（即便当前实例挂掉了，nacos也会存在该实例），和阈值有关
+        # service: 默认取${spring.application.name}，也可以在这里配置
+        # group: 默认DEFAULT_GROUP，就是用来做更细的分组管理，相同特征的服务进行归类
+        # weight: 权重，结合 负载均衡器 ，也可以在nacos页面设置，权重高流量越大
+        # network-interface: 不同网卡ip不同，一般电脑都一块网卡，默认取第一个网卡，不用管
+        # access-key: 阿里云上才能玩
+        # secret-key: 上阿里云才能玩
+        # metadata: 元数据，和nacos那边一样，获取服务列表时能够拿到元数据，做判断和源码扩展，不用关心，太深入
+        # cluster-name: 默认DEFAULT, 自定义

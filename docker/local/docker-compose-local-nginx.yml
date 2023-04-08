@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  nginx:
+    restart: always
+    container_name: nginx
+    image: nginx
+    ports:
+      - 80:80
+    volumes:
+      - D:\idea\workspace\spring-cloud-demo\docker\nginx\data\front:/usr/share/nginx/html
+      - D:\idea\workspace\spring-cloud-demo\docker\nginx\www:/var/www
+      - D:\idea\workspace\spring-cloud-demo\docker\nginx\logs:/var/log/nginx
+      - D:\idea\workspace\spring-cloud-demo\docker\nginx\etc\cert:/etc/nginx/cert
+      - D:\idea\workspace\spring-cloud-demo\docker\nginx\conf:/etc/nginx/conf.d
+    environment:
+      - NGINX_PORT=80
+    privileged: true

@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  mysql:
+    restart: always
+    container_name: mysql
+    image: mysql:8.0.29
+    ports:
+      - '3306:3306'
+    environment:
+      SET_CONTAINER_TIMEZONE: "true"
+      CONTAINER_TIMEZONE: "Asia/Shanghai"
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_HOST: '%'
+    volumes:
+      - '/etc/localtime:/etc/localtime:ro'  #同步宿主机日期时间到容器
+      - '/etc/timezone/timezone:/etc/timezone'
+      - '/data/mysql8/data/:/var/lib/mysql'
+      - '/data/mysql8/conf:/etc/mysql/conf.d'
+    command:
+      --default-authentication-plugin=mysql_native_password
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_general_ci
+      --explicit_defaults_for_timestamp=true
+      --lower_case_table_names=1

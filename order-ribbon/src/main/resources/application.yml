@@ -1,0 +1,25 @@
+server:
+  port: 8030
+
+# 应用名称（nacos会将该名称当作服务名称）
+spring:
+  application:
+    name: order-service
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848
+      discovery:
+        username: nacos
+        password: nacos
+        namespace: public
+
+#stock-service:
+#  ribbon:
+#    NFLoadBalancerRuleClassName: com.alibaba.cloud.nacos.ribbon.NacosRule
+stock-service:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.ribbon.rule.CustomRule
+ribbon:
+  eager-load:
+    clients: stock-service  # 多个服务用逗号分割
+    enabled: true  # 开启ribbon饥饿加载

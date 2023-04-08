@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  minio:
+    restart: always
+    image: minio/minio
+    container_name: minio
+    volumes:
+      - '/etc/localtime:/etc/localtime:ro'  #同步宿主机日期时间到容器
+      - '/etc/timezone/timezone:/etc/timezone'
+      - '/data/minio/data/:/data1'
+    ports:
+      - "9001:9000"
+      - "9008:9008"
+    environment:
+      MINIO_ACCESS_KEY: minio
+      MINIO_SECRET_KEY: minio
+      SET_CONTAINER_TIMEZONE: "true"
+      CONTAINER_TIMEZONE: "Asia/Shanghai"
+    command: server /data1 --console-address ":9008"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:9000/minio/health/live" ]
+      interval: 30s
+      timeout: 20s
+      retries: 3
