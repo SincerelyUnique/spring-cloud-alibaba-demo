@@ -11,6 +11,7 @@
         <module>order-loadbalancer</module>
         <module>order-openfeign</module>
         <module>product-nacos</module>
+        <module>config-nacos</module>
     </modules>
     <!-- SpringBoot的版本管理器 -->
     <groupId>com.example</groupId>

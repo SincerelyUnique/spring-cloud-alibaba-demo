@@ -88,3 +88,35 @@ C:\Users\Lenovo>netstat -ano | findstr "0"
    - 附加日志
    - 添加附加headers（token认证一般从网关加）
 
+
+## nacos-config
+- 传统配置的弊端
+  - 维护成本，容错性，很多服务都用某个redis，某天redis迁移了，需要都改
+  - 改完还需要重启，一致性，时效性
+  - 安全性，配置信息暴漏
+- nacos-config优势
+  - 对所有配置文件统一配置
+  - 动态感知，不重启
+  - 安全性，nacos权限控制，角色，只能看某个命名空间
+- 其他配置中心
+  - spring cloud config：结合git，依赖spring cloud bus推送（有延迟），无可视化界面
+  - nacos config
+  - apollo：读写效率低于nacos，容器化支持不如nacos
+- 权限管理
+  - nacos启动权限：修改nacos下application.properties，nacos.core.auth.enabled=true
+- nacos客户端每10ms去注册中心拉取配置，配置中心使用md5加密，配置没变化，也在拉取，namespace注释掉
+- 其他扩展配置
+  - 默认读properties扩展名，
+- 动态感知：@RefreshScope
+
+
+## Sentinel（分布式服务熔断、降级、流量防护等等）
+先略
+
+
+## Seata分布式事务
+先略
+
+
+## Gateway网关
+
