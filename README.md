@@ -69,3 +69,22 @@ C:\Users\Lenovo>netstat -ano | findstr "0"
   - RestTemplate
   - WebFlux
   - exclude从pom移除或禁用
+
+
+## Feign调用
+1. RestTemplate调用弊端
+   - 维护调用url
+   - HttpClient、Okhttp、HttpUrlConnection、WebClient（WebFlux）
+   - Feign简化
+2. Feign是Netffix，闭源了，Feign放在服务消费端，也是带负载均衡的，SpringCloud官方提供增强版OpenFeign
+3. 像调用本地方法一样调用远程方法
+4. 自定义配置-日志配置，四种日志级别，默认级别是不显示
+   - 全局配置，作用所有服务
+   - 局部配置
+   - Feign接口对于注解要求比较严格，@PathVariable
+5. 契约配置，还原为feign原生注解，为什么要还原feign原生注解？升级SpringCloud1.x并做兼容
+6. 超时时间配置
+7. 自定义拦截器，不是SpringMVC的拦截器
+   - 附加日志
+   - 添加附加headers（token认证一般从网关加）
+

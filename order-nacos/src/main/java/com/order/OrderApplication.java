@@ -8,6 +8,8 @@ import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.Duration;
+
 @SpringBootApplication
 //@EnableDiscoveryClient
 public class OrderApplication {
@@ -20,6 +22,7 @@ public class OrderApplication {
     //默认采用轮询的机制，即ribbon的负载均衡
     @LoadBalanced
     public RestTemplate restTemplate(RestTemplateBuilder restTemplateBuilder){
+        restTemplateBuilder.setConnectTimeout(Duration.ofMinutes(1));
         return restTemplateBuilder.build();
     }
 }
